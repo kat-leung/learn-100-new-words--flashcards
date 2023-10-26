@@ -1,25 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import Layout from './Components/Layout';
+import Flashcard from "./Pages/Flashcard"
+import 'bootstrap/dist/css/bootstrap.min.css';
+import React from "react"
 
-function App() {
+export default function App() {
+
+  const [ deckFace, setDeckFace ] = React.useState(true) 
+
+  function flipDeck() {
+      setDeckFace(!deckFace)
+  }
+
+  console.log(deckFace)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <Layout deckFace={deckFace} flipDeck={flipDeck}/>
+      <Flashcard
+          frontContent={<p>first lang</p>}
+          backContent={<p>second langugage</p>}
+      />
+    </>
+  )
 }
-
-export default App;
