@@ -1,5 +1,6 @@
 import Dropdown from 'react-bootstrap/Dropdown';
 import Button from 'react-bootstrap/Button';
+import { LinkContainer } from 'react-router-bootstrap'
 
 export default function NavBar(){
 
@@ -13,9 +14,11 @@ export default function NavBar(){
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>
-                        <Dropdown.Item>french</Dropdown.Item>
-                        <Dropdown.Item>spanish</Dropdown.Item>
-                        <Dropdown.Item>german</Dropdown.Item>
+                        <LinkContainer to="."><Dropdown.Item>spanish</Dropdown.Item></LinkContainer>
+                        <LinkContainer to="."><Dropdown.Item>french</Dropdown.Item></LinkContainer>
+                        <LinkContainer to="."><Dropdown.Item>german</Dropdown.Item></LinkContainer>
+                        <LinkContainer to="."><Dropdown.Item>japanese</Dropdown.Item></LinkContainer>
+                        <LinkContainer to="."><Dropdown.Item>italian</Dropdown.Item></LinkContainer>
                     </Dropdown.Menu>
                 </Dropdown>
 
