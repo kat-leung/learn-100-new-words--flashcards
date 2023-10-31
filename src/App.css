@@ -21,7 +21,7 @@ nav > h1 {
   background-color: #619737;
 }
 
-.correct-button:hover, .wrong-button:hover, .undo-button:hover {
+.correct-button:hover, .wrong-button:hover, .restart-button:hover {
   box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
 }
 
@@ -39,7 +39,7 @@ nav > h1 {
   background-color: #CC6161;
 }
 
-.undo-button {
+.restart-button {
   display: flex;
   justify-content: center;
   align-items: center;

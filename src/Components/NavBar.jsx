@@ -2,7 +2,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import Button from 'react-bootstrap/Button';
 import { LinkContainer } from 'react-router-bootstrap'
 
-export default function NavBar(){
+export default function NavBar( ){
 
     return (
         <nav>
@@ -14,11 +14,11 @@ export default function NavBar(){
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>
-                        <LinkContainer to="spanish"><Dropdown.Item>spanish</Dropdown.Item></LinkContainer>
-                        <LinkContainer to="french"><Dropdown.Item>french</Dropdown.Item></LinkContainer>
-                        <LinkContainer to="german"><Dropdown.Item>german</Dropdown.Item></LinkContainer>
-                        <LinkContainer to="japanese"><Dropdown.Item>japanese</Dropdown.Item></LinkContainer>
-                        <LinkContainer to="italian"><Dropdown.Item>italian</Dropdown.Item></LinkContainer>
+                        <LinkContainer to="spanish" lang="spanish"><Dropdown.Item>spanish</Dropdown.Item></LinkContainer>
+                        <LinkContainer to="french" lang="french"><Dropdown.Item>french</Dropdown.Item></LinkContainer>
+                        <LinkContainer to="german" lang="german"><Dropdown.Item>german</Dropdown.Item></LinkContainer>
+                        <LinkContainer to="japanese" lang="japanese"><Dropdown.Item>japanese</Dropdown.Item></LinkContainer>
+                        <LinkContainer to="italian" lang="italian"><Dropdown.Item>italian</Dropdown.Item></LinkContainer>
                     </Dropdown.Menu>
                 </Dropdown>
 
@@ -30,7 +30,6 @@ export default function NavBar(){
                 <Dropdown.Menu>
                     <Dropdown.Item>correct</Dropdown.Item>
                     <Dropdown.Item>incorrect</Dropdown.Item>
-                    <Dropdown.Item>starred</Dropdown.Item>
                 </Dropdown.Menu>
                 </Dropdown>
                 

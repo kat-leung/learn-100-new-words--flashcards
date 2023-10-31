@@ -9,33 +9,29 @@ import LaunchScreenLayout from './Components/LaunchScreenLayout';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 export default function App() {
+
   return (
     <BrowserRouter>
       <Routes>
         <Route path="flashcard" element={<Layout />}>
           <Route path="french" element={<Flashcard
-            frontContent={<p>french</p>}
-            backContent={<p>english word here</p>}
+            lang="french"
           />} />
           <Route path="spanish" element={<Flashcard
-            frontContent={<p>spanish</p>}
-            backContent={<p>english word here</p>}
+            lang="spanish" 
           />} />
           <Route path="italian" element={<Flashcard
-            frontContent={<p>ialian</p>}
-            backContent={<p>english word here</p>}
+            lang="italian"
           />} />
           <Route path="german" element={<Flashcard
-            frontContent={<p>german</p>}
-            backContent={<p>english word here</p>}
+            lang="german"
           />} />
           <Route path="japanese" element={<Flashcard
-            frontContent={<p>japanese</p>}
-            backContent={<p>english word here</p>}
+            lang="japanese"
           />} />
         </Route>
         <Route path="/" element={<LaunchScreenLayout />}>
-          <Route index element={<LaunchScreen />} />
+          <Route index  element={<LaunchScreen />} />
         </Route>
       </Routes>
     </BrowserRouter>
