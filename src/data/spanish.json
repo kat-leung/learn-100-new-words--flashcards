@@ -1,5 +1,4 @@
-{
-    "Spanish / español": 
+[
         {"word":"que", "eng":"that"},
         {"word":"de", "eng":"of, from"},
         {"word":"no", "eng":"no"},
@@ -100,4 +99,4 @@
         {"word":"tiempo", "eng":"time"},
         {"word":"verdad", "eng":"truth"},
         {"word":"estaba", "eng":"I was (non-permanent characteristics)"}		
-}
+]

@@ -1,5 +1,4 @@
-{
-	"German/ Deutsch":
+[
 {"word":"der (den, dem, des)", "eng":"the m."},
 {"word":"die (der, den)", "eng":"the f."},
 {"word":"und", "eng":"and"},
@@ -100,4 +99,4 @@
 {"word":"hier", "eng":"here"},
 {"word":"ganz", "eng":"entire(ly), complete(ly), whole(ly)"},
 {"word":"Berlin (das)", "eng":"Berlin"}
-}
+]

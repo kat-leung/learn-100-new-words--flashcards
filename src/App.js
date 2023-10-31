@@ -13,9 +13,25 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="flashcard" element={<Layout />}>
-          <Route index element={<Flashcard
-            frontContent={<p>first lang</p>}
-            backContent={<p>second language</p>}
+          <Route path="french" element={<Flashcard
+            frontContent={<p>french</p>}
+            backContent={<p>english word here</p>}
+          />} />
+          <Route path="spanish" element={<Flashcard
+            frontContent={<p>spanish</p>}
+            backContent={<p>english word here</p>}
+          />} />
+          <Route path="italian" element={<Flashcard
+            frontContent={<p>ialian</p>}
+            backContent={<p>english word here</p>}
+          />} />
+          <Route path="german" element={<Flashcard
+            frontContent={<p>german</p>}
+            backContent={<p>english word here</p>}
+          />} />
+          <Route path="japanese" element={<Flashcard
+            frontContent={<p>japanese</p>}
+            backContent={<p>english word here</p>}
           />} />
         </Route>
         <Route path="/" element={<LaunchScreenLayout />}>

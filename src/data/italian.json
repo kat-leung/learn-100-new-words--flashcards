@@ -1,5 +1,4 @@
-{
-	"Italian /italiano":
+[
 {"word":"il, la, le", "eng":"the"},
 {"word":"di", "eng":"of"},
 {"word":"e, ed", "eng":"and"},
@@ -100,4 +99,4 @@
 {"word":"passare", "eng":"to pass"},
 {"word":"agli", "eng":"(a + gli)"},
 {"word":"dove", "eng":"where"}
-}
+]

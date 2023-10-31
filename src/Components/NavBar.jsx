@@ -14,11 +14,11 @@ export default function NavBar(){
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>
-                        <LinkContainer to="."><Dropdown.Item>spanish</Dropdown.Item></LinkContainer>
-                        <LinkContainer to="."><Dropdown.Item>french</Dropdown.Item></LinkContainer>
-                        <LinkContainer to="."><Dropdown.Item>german</Dropdown.Item></LinkContainer>
-                        <LinkContainer to="."><Dropdown.Item>japanese</Dropdown.Item></LinkContainer>
-                        <LinkContainer to="."><Dropdown.Item>italian</Dropdown.Item></LinkContainer>
+                        <LinkContainer to="spanish"><Dropdown.Item>spanish</Dropdown.Item></LinkContainer>
+                        <LinkContainer to="french"><Dropdown.Item>french</Dropdown.Item></LinkContainer>
+                        <LinkContainer to="german"><Dropdown.Item>german</Dropdown.Item></LinkContainer>
+                        <LinkContainer to="japanese"><Dropdown.Item>japanese</Dropdown.Item></LinkContainer>
+                        <LinkContainer to="italian"><Dropdown.Item>italian</Dropdown.Item></LinkContainer>
                     </Dropdown.Menu>
                 </Dropdown>
 
