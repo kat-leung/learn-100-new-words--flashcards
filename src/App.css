@@ -63,15 +63,29 @@ nav > h1 {
   width: 35px;
 }
 
-.button-element{
+.button-element {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.button-text {
+.correct .button-text {
+  display: none;
+}
+
+.restart .button-text {
+  display: none;
+}
+
+.wrong .button-text {
+  display: none;
+}
+
+.button-element:hover .button-text {
+  display: block;
   position: absolute;
 }
+
 
 /* .flip-card:hover {
   transform: rotateY( 20deg ) ;
@@ -147,11 +161,19 @@ nav {
   height: 100%;
   transform-style: preserve-3d;
   transition: transform 0.5s; 
+  pointer-events: auto;
 }
 
 /* Rotates the inner container to show the back */
 .flip-card.flipped .flip-card-inner {
   transform: rotateY(180deg);
+}
+
+/* disables transition */
+.disable-animation .flip-card-inner {
+  transition: none; 
+  transform: rotateY(0deg); 
+  pointer-events: none; 
 }
 
 .card-front, .card-back {

@@ -1,12 +1,26 @@
 import Dropdown from 'react-bootstrap/Dropdown';
 import Button from 'react-bootstrap/Button';
 import { LinkContainer } from 'react-router-bootstrap'
+import { FlashcardContext } from '../App'
+import React from "react"
 
 export default function NavBar( ){
 
+    const { flipDeck, setFlipDeck, language, right, setRight, setWrong } = React.useContext(FlashcardContext)
+
+    const handleDropdownSelect = (eventKey) => {
+        if (eventKey === 'correct') {
+          setRight(true);
+          setWrong(false);
+        } else if (eventKey === 'incorrect') {
+          setRight(false);
+          setWrong(true);
+        }
+      };
+
     return (
         <nav>
-            <h1>deck name</h1>
+            <h1>{language}</h1>
             <div className='nav-buttons'>
                 <Dropdown>
                     <Dropdown.Toggle variant="nav" id="dropdown-basic">
@@ -22,18 +36,18 @@ export default function NavBar( ){
                     </Dropdown.Menu>
                 </Dropdown>
 
-                <Dropdown>
+                <Dropdown onSelect={handleDropdownSelect}>
                     <Dropdown.Toggle variant="nav" id="dropdown-basic">
                         filter
                     </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                    <Dropdown.Item>correct</Dropdown.Item>
-                    <Dropdown.Item>incorrect</Dropdown.Item>
+                    <Dropdown.Item eventKey="correct">correct</Dropdown.Item>
+                    <Dropdown.Item eventKey="incorrect">incorrect</Dropdown.Item>
                 </Dropdown.Menu>
                 </Dropdown>
                 
-                <Button variant="nav">flip deck</Button>
+                <Button variant="nav" onClick={() => {setFlipDeck(!flipDeck)}}>flip deck</Button>
             </div>
         </nav>
     )

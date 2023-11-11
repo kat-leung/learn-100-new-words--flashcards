@@ -1,18 +1,54 @@
-import right from "../assets/right.svg"
-import wrong from "../assets/wrong.svg"
+import righticon from "../assets/right-icon.svg"
+import wrongicon from "../assets/wrong-icon.svg"
 import restart  from "../assets/restart.svg"
 import React from "react";
+import { FlashcardContext } from '../App'
 
 export default function Flashcard({lang}){
 
-    const flashcardData = require(`../data/${lang}.json`);
+    const { flipDeck, setFlipDeck, setLanguage, right, wrong } = React.useContext(FlashcardContext)
 
-    const correct = []
-    const incorrect = []
+    const [correct, setCorrect] = React.useState([]);
+    const [incorrect, setIncorrect] = React.useState([]);
+    
+
+    var flashcardData = 
+    (!right && !wrong)
+        ? require(`../data/${lang}.json`)
+        : (right ? correct : (wrong ? incorrect : null));
+
+    // var flashcardData = require(`../data/${lang}.json`);
+
+    // Assuming 'right' and 'wrong' are defined and truthy
+    // if (right) {
+    //     if (Array.isArray(correct)) {
+    //         flashcardData = correct;
+    //     } else {
+    //         console.error("Error: 'correct' is not an array or is not defined.");
+    //     }
+    // } else if (wrong) {
+    //     if (Array.isArray(wrong)) {
+    //         flashcardData = wrong;
+    //     } else {
+    //         console.error("Error: 'wrong' is not an array or is not defined.");
+    //     }
+    // } else {
+    //     console.error("Error: Neither 'right' nor 'wrong' is truthy.");
+    // }
+    
+    // Now flashcardData is set based on the conditions
+
+    console.log(flipDeck);
+    
+    React.useEffect(() => {
+        setLanguage(lang);
+    }, []);
 
     const [flip, setFlip] = React.useState(false)
+   
+    const [cardIndex, setCardIndex] = React.useState(0);
 
-    const [flipDeck, setFlipDeck] = React.useState(true)
+    const [disableFlip, setDisableFlip] = React.useState(false); // state to disable flip animation
 
     function handleClick(){
         setFlip(!flip)
@@ -22,68 +58,40 @@ export default function Flashcard({lang}){
         setFlipDeck(!flipDeck)
     }
 
-    const [cardIndex, setCardIndex] = React.useState(0);
-
-    function handleCorrect() {
-        correct.push(flashcardData[cardIndex])
-        setCardIndex(cardIndex + 1);  
-        setFlip(false)
-    }
-
-    function handleWrong() {
-        incorrect.push(flashcardData[cardIndex])
+    const handleButtonClick = (isCorrect) => {
+        if (isCorrect) {
+          setCorrect((prevCorrect) => [...prevCorrect, flashcardData[cardIndex]]);
+        } else {
+          setIncorrect((prevIncorrect) => [...prevIncorrect, flashcardData[cardIndex]]);
+        }
+    
         setCardIndex(cardIndex + 1);
-        setFlip(false)  
-    }
+        setDisableFlip(true);
+        setFlip(false);
 
-    const correctText = 
-        <p className="button-text">correct</p>
-
-    const [correctButtonHover, setCorrectButtonHover] = React.useState(false)
-
-    function handleCorrectMouseOver() {
-        setCorrectButtonHover(true)
-    }
-
-    function handleCorrectMouseOut(){
-        setCorrectButtonHover(false)
-    }
-
-    const restartText = 
-        <p className="button-text">restart</p>
-
-    const [restartButtonHover, setRestartButtonHover] = React.useState(false)
-
-    function handleRestartMouseOver() {
-        setRestartButtonHover(true)
-    }
-
-    function handleRestartMouseOut(){
-        setRestartButtonHover(false)
-    }
-
-    const wrongText = 
-        <p className="button-text">wrong</p>
-
-    const [wrongButtonHover, setWrongButtonHover] = React.useState(false)
-
-    function handleWrongMouseOver() {
-        setWrongButtonHover(true)
-    }
-
-    function handleWrongMouseOut(){
-        setWrongButtonHover(false)
-    }
+        setTimeout(() => {
+            setDisableFlip(false);
+          }, 500);
+    };
 
     function restartDeck (){
         setCardIndex(0)
+        setFlip(!flip)
     }
-
-
-
+        
+    const Button = ({ text, image, onClick }) => (
+        <div className={`${text} button-element`}>
+          <p className={`${text} button-text`}>{text}</p>
+          <div className={`${text}-button`} onClick={onClick}>
+            <img className="icon" src={image} alt={text} />
+          </div>
+        </div>
+      );
+   
     return ( 
         <div className="main-content">
-            <div className={`flip-card ${flip ? 'flipped' : ''}`} onClick={handleClick}>
+            {flashcardData && flashcardData[cardIndex] ? (
+            <div className={`flip-card ${flip ? 'flipped' : ''} ${disableFlip ? 'disable-animation' : ''}`} onClick={handleClick}>
                 <div className="flip-card-inner">    
                     <div className={`card-${flipDeck ? "front" : "back"}`}>
                         {flashcardData[cardIndex][flipDeck ? 'word' : 'eng']}
@@ -91,28 +99,27 @@ export default function Flashcard({lang}){
                     <div className={`card-${flipDeck ? "back" : "front"}`}>
                         {flashcardData[cardIndex][flipDeck ? 'eng' : 'word']}
                     </div>
-                </div>
-            </div>
+                </div> 
+            </div> ) : ( <p>Loading...</p>)}
             
                 <div className="buttons">
-                    <div className="button-element">
-                        {correctButtonHover && correctText}
-                        <div className="correct-button" onClick={handleCorrect} onMouseOver={handleCorrectMouseOver} onMouseOut={handleCorrectMouseOut}>
-                            <img className="icon" src={right} alt="checkmark with green background"/>
-                        </div>
-                    </div>
-                    <div className="button-element">
-                        {restartButtonHover && restartText}  
-                        <div className="restart-button" onClick={restartDeck} onMouseOver={handleRestartMouseOver} onMouseOut={handleRestartMouseOut}>
-                            <img className="icon" src={wrong} alt="an x with a red background"/>
-                        </div>
-                    </div>
-                    <div className="button-element">
-                        {wrongButtonHover && wrongText}  
-                        <div className="wrong-button" onClick={handleWrong} onMouseOver={handleWrongMouseOver} onMouseOut={handleWrongMouseOut}>
-                            <img className="icon" src={restart} alt="a rounded arrow pointing back"/>
-                        </div>
-                    </div>
+                    <Button
+                        text="correct"
+                        image={righticon}
+                        onClick={() => handleButtonClick(true)}
+                    />
+
+                    <Button
+                        text="restart"
+                        image={wrongicon}
+                        onClick={restartDeck}
+                    />
+
+                    <Button
+                        text="wrong"
+                        image={restart}
+                        onClick={() => handleButtonClick(false)}
+                    />
                 </div>
         </div>
     )
