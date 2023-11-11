@@ -11,11 +11,16 @@ export default function Flashcard({lang}){
     const [correct, setCorrect] = React.useState([]);
     const [incorrect, setIncorrect] = React.useState([]);
     
+    setLanguage(lang)
 
     var flashcardData = 
     (!right && !wrong)
         ? require(`../data/${lang}.json`)
         : (right ? correct : (wrong ? incorrect : null));
+
+    // React.useEffect(()=>{
+    //     setCardIndex(0)
+    // }, [flashcardData])
 
     // var flashcardData = require(`../data/${lang}.json`);
 
@@ -38,7 +43,7 @@ export default function Flashcard({lang}){
     
     // Now flashcardData is set based on the conditions
 
-    console.log(flipDeck);
+    console.log(correct);
     
     React.useEffect(() => {
         setLanguage(lang);
