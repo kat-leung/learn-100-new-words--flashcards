@@ -6,7 +6,7 @@ import { FlashcardContext } from '../App'
 
 export default function Flashcard({lang}){
 
-    const { flipDeck, setFlipDeck, setLanguage, right, wrong } = React.useContext(FlashcardContext)
+    const { flipDeck, setLanguage, right, wrong } = React.useContext(FlashcardContext)
 
     const [correct, setCorrect] = React.useState([]);
     const [incorrect, setIncorrect] = React.useState([]);
@@ -18,36 +18,13 @@ export default function Flashcard({lang}){
         ? require(`../data/${lang}.json`)
         : (right ? correct : (wrong ? incorrect : null));
 
-    // React.useEffect(()=>{
-    //     setCardIndex(0)
-    // }, [flashcardData])
-
-    // var flashcardData = require(`../data/${lang}.json`);
-
-    // Assuming 'right' and 'wrong' are defined and truthy
-    // if (right) {
-    //     if (Array.isArray(correct)) {
-    //         flashcardData = correct;
-    //     } else {
-    //         console.error("Error: 'correct' is not an array or is not defined.");
-    //     }
-    // } else if (wrong) {
-    //     if (Array.isArray(wrong)) {
-    //         flashcardData = wrong;
-    //     } else {
-    //         console.error("Error: 'wrong' is not an array or is not defined.");
-    //     }
-    // } else {
-    //     console.error("Error: Neither 'right' nor 'wrong' is truthy.");
-    // }
-    
-    // Now flashcardData is set based on the conditions
-
-    console.log(correct);
-    
-    React.useEffect(() => {
-        setLanguage(lang);
-    }, []);
+    React.useEffect(()=>{
+        setCardIndex(0)
+    }, [flashcardData])
+        
+    // React.useEffect(() => {
+    //     setLanguage(lang);
+    // }, []);
 
     const [flip, setFlip] = React.useState(false)
    
@@ -57,10 +34,6 @@ export default function Flashcard({lang}){
 
     function handleClick(){
         setFlip(!flip)
-    }
-
-    function handleFlipDeck(){
-        setFlipDeck(!flipDeck)
     }
 
     const handleButtonClick = (isCorrect) => {
@@ -83,6 +56,14 @@ export default function Flashcard({lang}){
         setCardIndex(0)
         setFlip(!flip)
     }
+
+    const [currentFlipDeck, setCurrentFlipDeck] = React.useState(flipDeck);
+
+    React.useEffect(() => {
+        setCurrentFlipDeck(flipDeck);
+    }, [flipDeck]);
+
+    console.log(currentFlipDeck);
         
     const Button = ({ text, image, onClick }) => (
         <div className={`${text} button-element`}>
@@ -98,11 +79,11 @@ export default function Flashcard({lang}){
             {flashcardData && flashcardData[cardIndex] ? (
             <div className={`flip-card ${flip ? 'flipped' : ''} ${disableFlip ? 'disable-animation' : ''}`} onClick={handleClick}>
                 <div className="flip-card-inner">    
-                    <div className={`card-${flipDeck ? "front" : "back"}`}>
-                        {flashcardData[cardIndex][flipDeck ? 'word' : 'eng']}
+                    <div className={`card-${currentFlipDeck  ? "front" : "back"}`}>
+                        {flashcardData[cardIndex][currentFlipDeck  ? 'word' : 'eng']}
                     </div>
-                    <div className={`card-${flipDeck ? "back" : "front"}`}>
-                        {flashcardData[cardIndex][flipDeck ? 'eng' : 'word']}
+                    <div className={`card-${currentFlipDeck  ? "back" : "front"}`}>
+                        {flashcardData[cardIndex][currentFlipDeck  ? 'eng' : 'word']}
                     </div>
                 </div> 
             </div> ) : ( <p>Loading...</p>)}

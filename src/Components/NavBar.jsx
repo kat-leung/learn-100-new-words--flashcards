@@ -6,7 +6,7 @@ import React from "react"
 
 export default function NavBar( ){
 
-    const { flipDeck, setFlipDeck, language, right, setRight, setWrong } = React.useContext(FlashcardContext)
+    const { flipDeck, setFlipDeck, language, setRight, setWrong } = React.useContext(FlashcardContext)
 
     const handleDropdownSelect = (eventKey) => {
         if (eventKey === 'correct') {
