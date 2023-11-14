@@ -57,13 +57,14 @@ export default function Flashcard({lang}){
         setFlip(!flip)
     }
 
-    const [currentFlipDeck, setCurrentFlipDeck] = React.useState(flipDeck);
+    // const [currentFlipDeck, setCurrentFlipDeck] = React.useState(flipDeck);
 
-    React.useEffect(() => {
-        setCurrentFlipDeck(flipDeck);
-    }, [flipDeck]);
+    // React.useEffect(() => {
+    //     setCurrentFlipDeck(flipDeck);
+    // }, [flipDeck]);
 
-    console.log(currentFlipDeck);
+    console.log(`This is the flipDeck state: ${flipDeck}`);
+    console.log(`This is the flip state: ${flip}`)
         
     const Button = ({ text, image, onClick }) => (
         <div className={`${text} button-element`}>
@@ -79,12 +80,17 @@ export default function Flashcard({lang}){
             {flashcardData && flashcardData[cardIndex] ? (
             <div className={`flip-card ${flip ? 'flipped' : ''} ${disableFlip ? 'disable-animation' : ''}`} onClick={handleClick}>
                 <div className="flip-card-inner">    
-                    <div className={`card-${currentFlipDeck  ? "front" : "back"}`}>
-                        {flashcardData[cardIndex][currentFlipDeck  ? 'word' : 'eng']}
+                    {/* <div className={`card-${flip ? "front" : "back"}`}>
+                        {flashcardData[cardIndex][flipDeck ? 'word' : 'eng']}
+                    </div> */}
+                    {flipDeck ? 
+                    <div className={`card-${flip ? "back" : "front"}`}>
+                        {flashcardData[cardIndex][flip ? 'eng' : 'word']}
+                    </div> : 
+                    <div className={`card-${flip ? "back" : "front"}`}>
+                        {flashcardData[cardIndex][flip ? 'word' : 'eng']}
                     </div>
-                    <div className={`card-${currentFlipDeck  ? "back" : "front"}`}>
-                        {flashcardData[cardIndex][currentFlipDeck  ? 'eng' : 'word']}
-                    </div>
+                    }
                 </div> 
             </div> ) : ( <p>Loading...</p>)}
             
