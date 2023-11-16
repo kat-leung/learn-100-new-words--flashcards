@@ -1,6 +1,8 @@
 import righticon from "../assets/right-icon.svg"
 import wrongicon from "../assets/wrong-icon.svg"
-import restart  from "../assets/restart.svg"
+import restart  from "../assets/restart.svg";
+import backicon from "../assets/back-icon.svg"
+import forwardicon from "../assets/forward-icon.svg"
 import React from "react";
 import { FlashcardContext } from '../App'
 import Confetti from 'react-confetti'
@@ -27,10 +29,13 @@ export default function Flashcard({lang}){
     //     setLanguage(lang);
     // }, []);
 
+    console.log(correct)
+
+
     
     const [flip, setFlip] = React.useState(false)
     
-    const [cardIndex, setCardIndex] = React.useState(0);
+    const [cardIndex, setCardIndex] = React.useState(90);
     
     const [disableFlip, setDisableFlip] = React.useState(false); // state to disable flip animation
     
@@ -71,6 +76,16 @@ export default function Flashcard({lang}){
             setDisableFlip(false);
           }, 500);
     };
+
+  function handleForwardBackButtonClick(value) {
+    if (value) {
+      setCardIndex(cardIndex +1)
+    } else if (!value) {
+      setCardIndex(cardIndex -1)
+    }
+  }
+
+  console.log(cardIndex)
 
     React.useEffect(()=>{
       setCorrect([])
@@ -145,12 +160,21 @@ export default function Flashcard({lang}){
           )
           )}
         
-          {cardIndex < 100 && 
+          {cardIndex < 100 && !right && 
           <div className="buttons">
             <Button text="correct" image={righticon} onClick={() => handleButtonClick(true)} />
             <Button text="restart" image={wrongicon} onClick={restartDeck} />
             <Button text="wrong" image={restart} onClick={() => handleButtonClick(false)} />
           </div> }
+
+          {right && cardIndex >= 0  && 
+            <div className="buttons">
+            {cardIndex > 0 && <Button text="back" image={backicon} onClick={() => handleForwardBackButtonClick(false)}/>}
+            {cardIndex < correct.length -1 && <Button text="forward" image={forwardicon} onClick={() => handleForwardBackButtonClick(true)}/>}
+          </div> }
+
         </div>
       );
-          }
+      }
+      
+      

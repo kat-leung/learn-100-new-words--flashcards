@@ -51,6 +51,26 @@ p {
   width: 50%;
 }
 
+.forward-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #E39B22;
+}
+
+.back-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #E39B22;
+}
+
 .correct-button {
   display: flex;
   justify-content: center;
@@ -90,11 +110,11 @@ p {
   margin: 30px 30px;
 }
 
-.correct-button:hover, .wrong-button:hover, .restart-button:hover {
+.correct-button:hover, .wrong-button:hover, .restart-button:hover, .forward-button:hover, .back-button:hover {
   box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
 }
 
-.correct-button, .wrong-button, .restart-button {
+.correct-button, .wrong-button, .restart-button, .forward-button, .back-button{
   margin-top: 30px;
 }
 
@@ -118,6 +138,14 @@ p {
 }
 
 .wrong .button-text {
+  display: none;
+}
+
+.back .button-text {
+  display: none;
+}
+
+.forward .button-text {
   display: none;
 }
 
