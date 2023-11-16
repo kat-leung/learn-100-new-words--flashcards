@@ -6,7 +6,7 @@ import React from "react"
 
 export default function NavBar( ){
 
-    const { flipDeck, setFlipDeck, language, setRight, setWrong } = React.useContext(FlashcardContext)
+    const { cardDeckComplete, flipDeck, setFlipDeck, language, setRight, setWrong } = React.useContext(FlashcardContext)
 
     const handleDropdownSelect = (eventKey) => {
         if (eventKey === 'correct') {
@@ -36,8 +36,8 @@ export default function NavBar( ){
                     </Dropdown.Menu>
                 </Dropdown>
 
-                <Dropdown onSelect={handleDropdownSelect}>
-                    <Dropdown.Toggle variant="nav" id="dropdown-basic">
+                <Dropdown onSelect={handleDropdownSelect} >
+                    <Dropdown.Toggle variant="nav" id="dropdown-basic" disabled={cardDeckComplete ? false : true}>
                         filter
                     </Dropdown.Toggle>
 

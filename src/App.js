@@ -18,9 +18,11 @@ export default function App() {
 
   const [flipDeck, setFlipDeck] = React.useState(true)
 
+  const [cardDeckComplete, setCardDeckComplete] = React.useState(false)
+
   return (
     <BrowserRouter>
-      <FlashcardContext.Provider value={{flipDeck, setFlipDeck, language, setLanguage, right, setRight, wrong, setWrong}}>
+      <FlashcardContext.Provider value={{flipDeck, setFlipDeck, language, setLanguage, right, setRight, wrong, setWrong, cardDeckComplete, setCardDeckComplete}}>
         <Routes>
           <Route path="flashcard" element={<Layout />}>
             <Route path="french" element={<Flashcard
