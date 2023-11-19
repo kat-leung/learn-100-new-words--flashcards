@@ -9,7 +9,7 @@ import Confetti from 'react-confetti'
 
 export default function Flashcard({lang}){
 
-    const {  setCardDeckComplete, flipDeck, setLanguage, language,  right, wrong } = React.useContext(FlashcardContext)
+    const {  setCardDeckComplete, flipDeck, setLanguage, language,  right, wrong, setRight, setWrong } = React.useContext(FlashcardContext)
 
     const [correct, setCorrect] = React.useState([]);
     const [incorrect, setIncorrect] = React.useState([]);
@@ -29,7 +29,7 @@ export default function Flashcard({lang}){
     //     setLanguage(lang);
     // }, []);
 
-    console.log(correct)
+    console.log(incorrect)
 
 
     
@@ -45,6 +45,10 @@ export default function Flashcard({lang}){
     
     if (cardIndex === 99){
       setCardDeckComplete(true)
+    }
+
+    if (correct.length === 100){
+      setCardDeckComplete(false)
     }
     
     function removeDuplicates(arr) {
@@ -94,6 +98,11 @@ export default function Flashcard({lang}){
     function restartDeck (){
         setCardIndex(0)
         setFlip(!flip)
+    }
+
+    function resetDeck(){
+      setRight(false)
+      setWrong (false)
     }
 
         
@@ -153,23 +162,32 @@ export default function Flashcard({lang}){
             <div className="win">
               <div className="confetti">
                 <Confetti/>
-                <h1>Congrats! You've learned 100 new {lang} words.</h1>
+                <h1>Congrats! You've learned 100 new {lang} words.</h1> <br/>
                 <h2>Now to learn another 100 words in new language. Select another language to learn using the dropdown.</h2>
               </div>
             </div>
           )
           )}
         
-          {cardIndex < 100 && !right && 
+          {cardIndex < 100 && !right && !wrong && (
           <div className="buttons">
             <Button text="correct" image={righticon} onClick={() => handleButtonClick(true)} />
             <Button text="restart" image={wrongicon} onClick={restartDeck} />
             <Button text="wrong" image={restart} onClick={() => handleButtonClick(false)} />
-          </div> }
+          </div> 
+          )}
 
           {right && cardIndex >= 0  && 
             <div className="buttons">
             {cardIndex > 0 && <Button text="back" image={backicon} onClick={() => handleForwardBackButtonClick(false)}/>}
+            <Button text="restart" image={wrongicon} onClick={resetDeck} />
+            {cardIndex < correct.length -1 && <Button text="forward" image={forwardicon} onClick={() => handleForwardBackButtonClick(true)}/>}
+          </div> }
+
+          {wrong && cardIndex >= 0  && 
+            <div className="buttons">
+            {cardIndex > 0 && <Button text="back" image={backicon} onClick={() => handleForwardBackButtonClick(false)}/>}
+            <Button text="restart" image={wrongicon} onClick={resetDeck} />
             {cardIndex < correct.length -1 && <Button text="forward" image={forwardicon} onClick={() => handleForwardBackButtonClick(true)}/>}
           </div> }
 
