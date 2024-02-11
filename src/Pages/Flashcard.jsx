@@ -9,7 +9,7 @@ import Confetti from 'react-confetti'
 
 export default function Flashcard({lang}){
 
-    const {  setCardDeckComplete, flipDeck, setLanguage, language,  right, wrong, setRight, setWrong } = React.useContext(FlashcardContext)
+    const { setCardDeckComplete, flipDeck, setLanguage, language,  right, wrong, setRight, setWrong } = React.useContext(FlashcardContext)
 
     const [correct, setCorrect] = React.useState([]);
     const [incorrect, setIncorrect] = React.useState([]);
@@ -23,19 +23,13 @@ export default function Flashcard({lang}){
 
     React.useEffect(()=>{
         setCardIndex(0)
+        setCorrect([])
+        setIncorrect([])
     }, [flashcardData])
-        
-    // React.useEffect(() => {
-    //     setLanguage(lang);
-    // }, []);
-
-    console.log(incorrect)
-
-
-    
+     
     const [flip, setFlip] = React.useState(false)
     
-    const [cardIndex, setCardIndex] = React.useState(90);
+    const [cardIndex, setCardIndex] = React.useState(0);
     
     const [disableFlip, setDisableFlip] = React.useState(false); // state to disable flip animation
     
@@ -43,7 +37,7 @@ export default function Flashcard({lang}){
       setFlip(!flip)
     }
     
-    if (cardIndex === 99){
+    if (cardIndex === 100){
       setCardDeckComplete(true)
     }
 
@@ -59,6 +53,7 @@ export default function Flashcard({lang}){
     );
     }
     
+    //function that handles storing corrent and incorrect answers into the correct and incorrect states
     const handleButtonClick = (isCorrect) => {
         if (isCorrect) {
           setCorrect((prevCorrect) => [...prevCorrect, flashcardData[cardIndex]]);
@@ -89,15 +84,14 @@ export default function Flashcard({lang}){
     }
   }
 
-  console.log(cardIndex)
-
     React.useEffect(()=>{
       setCorrect([])
     }, [language])
 
     function restartDeck (){
         setCardIndex(0)
-        setFlip(!flip)
+        setRight(false)
+        setWrong (false)
     }
 
     function resetDeck(){
@@ -114,6 +108,8 @@ export default function Flashcard({lang}){
           </div>
         </div>
       );
+
+      console.log(correct.length)
    
       return (
         
