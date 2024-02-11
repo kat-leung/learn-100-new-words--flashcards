@@ -92,6 +92,8 @@ export default function Flashcard({lang}){
         setCardIndex(0)
         setRight(false)
         setWrong (false)
+        setCorrect([])
+        setIncorrect([])
     }
 
     function resetDeck(){
