@@ -22,9 +22,14 @@ export default function Flashcard({lang}){
         : (right ? correct : (wrong ? incorrect : null));
 
     React.useEffect(()=>{
+      setCardIndex(0)
+      setCorrect([])
+      setIncorrect([])
+    }, [language])
+
+
+    React.useEffect(()=>{
         setCardIndex(0)
-        setCorrect([])
-        setIncorrect([])
     }, [flashcardData])
      
     const [flip, setFlip] = React.useState(false)
@@ -78,27 +83,25 @@ export default function Flashcard({lang}){
 
   function handleForwardBackButtonClick(value) {
     if (value) {
-      setCardIndex(cardIndex +1)
+      setCardIndex(cardIndex +1);
     } else if (!value) {
-      setCardIndex(cardIndex -1)
+      setCardIndex(cardIndex -1);
     }
   }
 
-    React.useEffect(()=>{
-      setCorrect([])
-    }, [language])
-
     function restartDeck (){
-        setCardIndex(0)
-        setRight(false)
-        setWrong (false)
-        setCorrect([])
-        setIncorrect([])
+        setCardIndex(0);
+        setRight(false);
+        setWrong (false);
+        setCorrect([]);
+        setIncorrect([]);
+        setCardDeckComplete(false);
     }
 
     function resetDeck(){
-      setRight(false)
-      setWrong (false)
+      setRight(false);
+      setWrong (false);
+      setCardDeckComplete(false);
     }
 
         

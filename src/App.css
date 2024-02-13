@@ -15,6 +15,10 @@ p {
   font-size: 1.5em;
 }
 
+/* body {
+  width: 100vw;
+} */
+
 .results {
   margin-top: 2em;
   display:flex;
@@ -101,7 +105,6 @@ p {
   background-color: #87BFE7;
 }
 
-
 .buttons {
   display: flex;
   flex-direction: row;
@@ -117,7 +120,6 @@ p {
 .correct-button, .wrong-button, .restart-button, .forward-button, .back-button{
   margin-top: 30px;
 }
-
 
 .icon {
   width: 35px;
@@ -173,6 +175,7 @@ nav {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
   gap: 5%;
 }
 
@@ -183,6 +186,8 @@ nav {
   color: #000;
 }
 
+
+
 .btn.btn-nav:hover {
   background-color:#e4e4e4 ;
 }
@@ -190,13 +195,17 @@ nav {
 .launchscreen-title {
   display: flex;
   justify-content: center;
-  align-items: center;
-  margin: 200px 0;
+  align-items: stretch;
+  height: 100%;
+  margin: 0;
 }
 
 .launchscreen-title > h1 {
-  text-align: center;  
   font-size: 4em;
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   width: 30%;
 }
 
@@ -206,6 +215,7 @@ nav {
   justify-content: center;
   align-items: center;
   margin: 100px 0;
+  width: 100%;
 }
 
 .flip-card {
@@ -215,12 +225,9 @@ nav {
   justify-content: center;
   align-items: center;
   background-color: transparent;
-  /* color: #fff; */
   perspective: 1000px;
   font-weight: 400;
   font-size: 3em;
-
-  
   margin-bottom: 30px;
 }
 
@@ -271,4 +278,61 @@ nav {
   transform: rotateY(180deg);
   border-radius: 60px;
   box-shadow: 5px 5px 15px rgba(0,0,0,0.5);
+}
+
+@media screen and (max-width: 768px) {
+
+.launchscreen-title {
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+}
+
+.launchscreen-title > h1 {
+  text-align: center;  
+  font-size: 2em;
+  width: 30%;
+}
+
+.main-content {
+  margin: 0;
+}
+
+.nav-buttons {
+  font-size: .75em;
+}
+
+.btn.btn-nav {
+  height: 50px;
+  padding: 0 10px;
+  width: 90px;
+}
+
+.buttons {
+  gap: 10px;
+}
+
+.dropdown {
+  margin: 10px;
+}
+
+.flip-card {
+  width: 75%;
+  max-height: 250px;
+  max-width: 350px;
+}
+
+.correct-button, .wrong-button, .restart-button, .forward-button, .back-button {
+  width: 75px;
+  height: 75px;
+}
+
+.icon {
+  width: 25px;
+}
+
+.buttons {
+  margin: 0px;
+}
+
 }
