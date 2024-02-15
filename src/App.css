@@ -109,6 +109,7 @@ p {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
   gap: 25px;
   margin: 30px 30px;
 }
@@ -195,9 +196,8 @@ nav {
 .launchscreen-title {
   display: flex;
   justify-content: center;
-  align-items: stretch;
-  height: 100%;
-  margin: 0;
+  margin: 150px 0;
+
 }
 
 .launchscreen-title > h1 {
@@ -282,57 +282,82 @@ nav {
 
 @media screen and (max-width: 768px) {
 
-.launchscreen-title {
-  display: flex; 
-  justify-content: center;
-  align-items: center;
-}
+  .launchscreen-title {
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    margin: 75px 0;
+  }
 
-.launchscreen-title > h1 {
-  text-align: center;  
-  font-size: 2em;
-  width: 30%;
-}
+  .launchscreen-title > h1 {
+    text-align: center;  
+    font-size: 2em;
+    width: 30%;
+  }
 
-.main-content {
-  margin: 0;
-}
+  .main-content {
+    margin: 0;
+  }
 
-.nav-buttons {
-  font-size: .75em;
-}
+  .flip-card {
+    font-size: 1.5em;
+  }
 
-.btn.btn-nav {
-  height: 50px;
-  padding: 0 10px;
-  width: 90px;
-}
+  .nav-buttons {
+    font-size: .75em;
+  }
 
-.buttons {
-  gap: 10px;
-}
+  .btn.btn-nav {
+    height: 50px;
+    padding: 0 10px;
+    width: 90px;
+  }
 
-.dropdown {
-  margin: 10px;
-}
+  .buttons {
+    gap: 10px;
+  }
 
-.flip-card {
-  width: 75%;
-  max-height: 250px;
-  max-width: 350px;
-}
+  .dropdown {
+    margin: 10px;
+  }
 
-.correct-button, .wrong-button, .restart-button, .forward-button, .back-button {
-  width: 75px;
-  height: 75px;
-}
+  .flip-card {
+    width: 75%;
+    max-height: 250px;
+    max-width: 350px;
+  }
 
-.icon {
-  width: 25px;
-}
+  .correct-button, .wrong-button, .restart-button, .forward-button, .back-button {
+    width: 75px;
+    height: 75px;
+  }
 
-.buttons {
-  margin: 0px;
-}
+  .icon {
+    width: 25px;
+  }
+
+  .buttons {
+    margin: 0px;
+  }
+
+  .deck-complete {
+    padding: 20px;
+    margin-top: -25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .complete-text {
+    margin: 1em;
+  }
+
+  .confetti {
+    width: 100%;
+    max-width: 768px;
+    height: 100%;
+  }
 
 }

@@ -138,7 +138,7 @@ export default function Flashcard({lang}){
               <p>Loading...</p>
             )
           ) :  (correct.length !== 100 ? (
-            <div>
+            <div className="deck-complete">
               <h1>Yay! You've reviewed all 100 words.</h1>
                 <div className="results">
                     <h2>How you did:</h2>
